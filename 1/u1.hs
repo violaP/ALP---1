@@ -66,6 +66,11 @@ zinsenalt kapital zinssatz = kapital * zinssatz / 100
 
 {- Aufgabe 5 -}
 
+zero:: Float->Float
+zero x = (1/x)*x-1
+
+
+{- Aufgabe 6 -}
+
 grthanaverage::Int->Int->Int->Int
-grthanaverage a b c = if ((a + b +c)/3) < a else
-						if   
+grthanaverage a b c = ((a + b +c)/3) > index i 
