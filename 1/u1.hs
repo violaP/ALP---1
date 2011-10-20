@@ -71,6 +71,9 @@ zero x = (1/x)*x-1
 
 
 {- Aufgabe 6 -}
+{-
 
 grthanaverage::Int->Int->Int->Int
-grthanaverage a b c = ((a + b +c)/3) > index i 
+grthanaverage a b c = ((a + b +c)/3)
+
+-}
