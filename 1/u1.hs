@@ -69,18 +69,24 @@ zinsenalt kapital zinssatz = kapital * zinssatz / 100
 zero:: Float->Float
 zero x = (1/x)*x-1
 
+{- 
+
+Übergibt man als Argument eine 1.0e-39 kommt anstatt von 0, Infinity als Ergebnis. Das liegt daran, dass die Zahl nicht verarbeitet werden kann, aber nicht null ist.
+
+-}
+
 
 {- Aufgabe 6 -}
 
+d :: Float->Float->Float->Float
+d a b c = (a + b + c)/3
 
-d (a, b, c)= (a + b + c)/3
-
-
-vergleich (p, q)=
+vergleich::Float->Float->Float
+vergleich p q =
 	  if p > q then 1
 	  else 0
 
-
-anzahl (a, b, c) = ( vergleich (a, d(a, b, c)) + vergleich (b, d(a,b, c))+vergleich (c, d(a,b,c)))
+anzahl::Float->Float->Float->Float
+anzahl a b c =  vergleich a (d a b c) + vergleich b (d a b c) + vergleich c (d a b c)
 
 
