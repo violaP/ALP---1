@@ -78,15 +78,13 @@ zero x = (1/x)*x-1
 
 {- Aufgabe 6 -}
 
-d :: Float->Float->Float->Float
-d a b c = (a + b + c)/3
+d ::(Integral x) => x -> x -> x -> Float
+d a b c = fromIntegral(a + b + c)/3
 
-vergleich::Float->Float->Float
+vergleich::(Integral a, Ord b, Num b) => a -> b -> Int
 vergleich p q =
-	  if p > q then 1
+	  if (fromIntegral p) > q then 1
 	  else 0
 
-anzahl::Float->Float->Float->Float
-anzahl a b c =  vergleich a (d a b c) + vergleich b (d a b c) + vergleich c (d a b c)
-
-
+anzahl:: Int -> Int -> Int -> Int
+anzahl a b c = (vergleich a (d a b c)) + (vergleich b (d a b c)) + (vergleich c (d a b c))
