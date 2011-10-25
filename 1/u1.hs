@@ -10,7 +10,7 @@ main = undefined
 {- Aufgabe 1 -}
 
 tri::Float->Float->Float->Bool
-tri x y z = last (sort ([x,y,z])) < sum( init( sort( [x,y,z])))
+tri x y z = maximum [x,y,z] < sum( init( sort( [x,y,z])))
 
 
 {- Aufgabe 2 
