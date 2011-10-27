@@ -83,6 +83,8 @@ zero x = (1/x)*x-1
 
 {- Aufgabe 6 -}
 
+
+
 d ::(Integral x) => x -> x -> x -> Float
 d a b c = fromIntegral(a + b + c)/3
 
@@ -93,6 +95,8 @@ vergleich p q =
 
 anzahl:: Int -> Int -> Int -> Int
 anzahl a b c = (vergleich a (d a b c)) + (vergleich b (d a b c)) + (vergleich c (d a b c))
+
+{- alternative solution by marian -}
 
 mean :: [Int] -> Float
 mean l = fromIntegral (sum l) / fromIntegral (length l)
