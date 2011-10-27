@@ -1,5 +1,4 @@
 module Main where
-
 import Data.List
 
 main::IO()
@@ -8,6 +7,8 @@ main = undefined
 
 
 {- Aufgabe 1 -}
+
+
 
 tri::Float->Float->Float->Bool
 tri x y z = maximum [x,y,z] < sum( init( sort( [x,y,z])))
@@ -53,8 +54,12 @@ endwert kapital zinssatz jahre = jahre*(zinsen kapital zinssatz) + kapital
 {-b)-}
 
 endwert2::Float->Float->Float->Float
-endwert2 kapital zinssatz 0 = kapital
-endwert2 kapital zinssatz jahre = endwert2 ((zinsen kapital zinssatz)+kapital) (zinssatz) (jahre-1)
+endwert2 kapital zinssatz jahre = (zinsen kapital zinssatz)**jahre+kapital
+
+endwertrec::Float->Float->Float->Float
+endwertrec kapital zinssatz 0 = kapital
+endwertrec kapital zinssatz jahre = endwert2 ((zinsen kapital zinssatz)+kapital) (zinssatz) (jahre-1)
+
 
 {-c)-}
 
@@ -88,3 +93,15 @@ vergleich p q =
 
 anzahl:: Int -> Int -> Int -> Int
 anzahl a b c = (vergleich a (d a b c)) + (vergleich b (d a b c)) + (vergleich c (d a b c))
+
+mean :: [Int] -> Float
+mean l = fromIntegral (sum l) / fromIntegral (length l)
+
+gtmean :: [Int] -> [Int]
+gtmean l = filter (\x -> fromIntegral x > mean l) l
+
+gtmeanc :: [Int] -> Int
+gtmeanc = length.gtmean
+
+gtmeanc3 :: Int -> Int -> Int -> Int
+gtmeanc3 x y z = gtmeanc [x,y,z]
