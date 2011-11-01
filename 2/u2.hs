@@ -20,6 +20,7 @@ timeformatio :: (Int, Int) -> IO()
 timeformatio (h, m) = putStr ((timeformat (h,m))++"\n")
 
 {- Aufgabe 3 -}
+
 maketables :: (Int, Int) -> IO()
 maketables (a,b) | a < 0 || b > 31 || b < a = putStr "Zu große Zahlen\n"
 		 | otherwise 		    = putStr (tablesrender [a..b] 0 (-1) "")
@@ -37,6 +38,38 @@ getchars :: Int -> String -> String -> String
 getchars 0 c s = s
 getchars l c s = getchars (l-1) c (s++c)
 
+{- Aufgabe 4 -}
+
+test x y z 	| x <= y 	= True
+		| y <= z 	= False
+		| otherwise	= x<z
 
 
+{- Aufgabe 5 -}
 
+-- a)
+
+ndivw :: Int -> [Int]
+ndivw n = ndivs n (div n 2) []
+
+ndivs :: Int -> Int -> [Int] -> [Int]
+ndivs n 1 xs = (1:xs)
+ndivs n c xs = ndivs n (c-1) (if ((mod n c) == 0) then (c:xs) else xs)
+
+-- b)
+
+btsumdivs :: Int -> Bool
+btsumdivs n = sum (ndivw n) > n 
+
+listbtsums :: Int -> [Int] -> [Int]
+listbtsums 1 xs = xs
+listbtsums n xs = listbtsums (n-1) (if (btsumdivs(n)) then (n:xs) else xs)
+
+-- c)
+
+eqsumdivs :: Int -> Bool
+eqsumdivs n = sum (ndivw n) == n
+
+listeqsums :: Int -> [Int] -> [Int]
+listeqsums 1 xs = xs
+listeqsums n xs = listeqsums (n-1) (if (eqsumdivs(n)) then (n:xs) else xs)
