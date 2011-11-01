@@ -23,16 +23,17 @@ timeformatio (h, m) = putStr ((timeformat (h,m))++"\n")
 
 maketables :: (Int, Int) -> IO()
 maketables (a,b) | a < 0 || b > 31 || b < a = putStr "Zu große Zahlen\n"
-		 | otherwise 		    = putStr (tablesrender [a..b] 0 (-1) "")
+		 | otherwise 		    = putStr (tablesrender [a..b] 0 (0) "")
 
 tablesrender :: [Int] -> Int -> Int -> String -> String
-tablesrender [xn] i j s | i == 0 && j < 0    = tablesrender [xn] i (j+1) (s++"   |")
-			| j == (length [xn]) = tablesrender [xn] (i+1) 0 (s++"\n")
-		        | i == 0 && j >= 0   = tablesrender [xn] i (j+1) (s++(getchars ( 3 - ( length( show( [xn]!!j)))) " " "" ) ++ (show ([xn]!!j)))
-			| i == 1 && j >= 0   = tablesrender [xn] (i+1) j (s ++ "---+" ++ (getchars (length s) "-" ""))
-			| i > 1 && j == 0    = tablesrender [xn] i (j+1) (s ++ (getchars ( 3 - (length( show( [xn]!!j)))) " " "" )  ++ (show ([xn]!!j)) ++ "|" )
-			| i > 1 && j > 0     = tablesrender [xn] i (j+1) (s ++ (getchars ( 3 - ( length( show(([xn]!!j)*([xn]!!j))))) " " "" ) ++ (show (([xn]!!j)*([xn]!!j))))
-			| otherwise = s
+tablesrender xn i j s | i == 0 && j == 0      = tablesrender xn i (j+1) (s++"   |")
+			| i >= (length xn)+2 = s
+			| j >= (length xn)+1 = tablesrender xn (i+1) 0 (s++"\n")
+		        | i == 0 && j >= 0   = tablesrender xn i (j+1) (s++(getchars ( 3 - ( length( show( xn!!(j-1))))) " " "" ) ++ (show (xn!!(j-1))))
+			| i == 1 && j >= 0   = tablesrender xn (i+1) j (s ++ "---+" ++ (getchars (length s) "-" "") ++ "\n" )
+			| i > 1 && j == 0    = tablesrender xn i (j+1) (s ++ (getchars ( 3 - (length( show( xn!!(i-2))))) " " "" )  ++ (show (xn!!(i-2))) ++ "|" )
+			| i > 1 && j > 0     = tablesrender xn i (j+1) (s ++ (getchars ( 3 - ( length( show((xn!!(i-2))*(xn!!(j-1)))))) " " "" ) ++ (show ((xn!!(i-2))*(xn!!(j-1)))))
+
 
 getchars :: Int -> String -> String -> String
 getchars 0 c s = s
