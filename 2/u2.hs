@@ -1,4 +1,4 @@
-{- Aufgabe 1 -}
+{- Aufgabe 7 -}
 
 clockdiff :: (Int, Int) -> (Int, Int) -> (Int, Int)
 clockdiff (h1, m1) (h2, m2)	| h1*60+m1 > h2*60+m2	= maketime (-((h1*60+m1)-(h2*60+m2)))
@@ -9,7 +9,7 @@ maketime :: Int -> (Int, Int)
 maketime mins | mins >= 0 = ((div mins 60), (mod mins 60))
               | otherwise = (-(div (-mins) 60), -(mod (-mins) 60))
 
-{- Aufgabe 2 -}
+{- Aufgabe 8 -}
 
 timeformat :: (Int, Int) -> String
 timeformat (h, m) | h > 23 || m > 59 || m < 0 = "ungültig"
@@ -19,11 +19,10 @@ timeformat (h, m) | h > 23 || m > 59 || m < 0 = "ungültig"
 timeformatio :: (Int, Int) -> IO()
 timeformatio (h, m) = putStr ((timeformat (h,m))++"\n")
 
-{- Aufgabe 3 -}
+{- Aufgabe 9 -}
 
 maketables :: (Int, Int) -> IO()
-maketables (a,b) | a < 0 || b > 33 || b < a = putStr "Zu große Zahlen\n"
-		 | otherwise 		    = putStr (tablesrender [a..b] 0 0 ((length(show(b*b)))+1)  "")
+maketables (a,b)     = putStr (tablesrender [a..b] 0 0 ((length(show(b*b)))+1)  "")
 
 tablesrender :: [Int] -> Int -> Int -> Int -> String -> String
 tablesrender xn i j cl s | i == 0 && j == 0      = tablesrender xn i (j+1) cl (s++ (getchars cl " " "") ++  "|")
@@ -39,14 +38,14 @@ getchars :: Int -> String -> String -> String
 getchars 0 c s = s
 getchars l c s = getchars (l-1) c (s++c)
 
-{- Aufgabe 4 -}
+{- Aufgabe 10 -}
 
 test x y z 	| x <= y 	= True
 		| y <= z 	= False
 		| otherwise	= x<z
 
 
-{- Aufgabe 5 -}
+{- Aufgabe 11 -}
 
 -- a)
 
